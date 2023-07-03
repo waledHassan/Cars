@@ -1,0 +1,44 @@
+@include('admin.css')
+
+@include('admin.sidebar')
+
+    <div class="overlay"></div>
+
+    <main class="main-wrapper">
+
+@include('admin.navbar')
+
+       <form action="{{url('uploadIntoCategoryTable' , $table= $table)}}" method='POST'>
+          @csrf
+        <div class="col-lg-10 mt-8" style='margin-left:100px;'>
+            <div class="card-style mb-30">
+            <h6 class="mb-25">Add Data</h6>
+
+            <div class="input-style-1">
+                <label>Name</label>
+                <input type="text" name='name' placeholder="Name" required='require'/>
+            </div>
+
+            <div class="input-style-1">
+                <label style='text-align:right;'>الاسم</label>
+                <input type="text" name='name_ar' style='text-align:right;' placeholder="الاسم" required='require'/>
+            </div>
+
+            <div class="select-style-2">
+                <div class="select-position">
+            <select class="input-style-1" name="category">
+                @foreach ($categories as $category)
+                    <option value="{{$category->id}}">{{ $category->name }}</option>
+                @endforeach
+            </select>
+                </div>
+            </div> 
+
+            <div class="input-style-1">
+                 <button class='btn btn-primary'>Add</button>
+            </div>
+         </div>
+        </div>
+      </form>
+
+@include('admin.footer')
